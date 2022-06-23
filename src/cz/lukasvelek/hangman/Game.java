@@ -4,7 +4,7 @@ package cz.lukasvelek.hangman;
  * The class Game contains the word that is being guessed and all necessary stuff that is needed to be able to finish the game
  * 
  * @author Lukas Velek
- * @version 1.0 (6/23/2022)
+ * @version 1.1 (6/23/2022)
  *
  */
 public class Game {
@@ -73,16 +73,14 @@ public class Game {
 		
 		for(int i = 0; i < ALPHABET.length(); i++) {
 			if(letter == ALPHABET.charAt(i)) {
-				if(!checkLetterUsedAgain(letter)) {
-					for(int j = 0; j < word.length(); j++) {
-						if(word.charAt(j) == letter) {
-							wordCompletion[j] = letter;
-							success = true;
-						}
+				for(int j = 0; j < word.length(); j++) {
+					if(word.charAt(j) == letter) {
+						wordCompletion[j] = letter;
+						success = true;
 					}
-
-					lettersUsed += letter;
 				}
+
+				lettersUsed += letter;
 			}
 		}
 		
@@ -132,7 +130,7 @@ public class Game {
 	 * @param letter Letter to be checked
 	 * @return True if letter has been used; false if not
 	 */
-	private boolean checkLetterUsedAgain(char letter) {
+	public boolean checkLetterUsedAgain(char letter) {
 		boolean used = false;
 		
 		for(int i = 0; i < lettersUsed.length(); i++) {

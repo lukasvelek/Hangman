@@ -4,7 +4,7 @@ package cz.lukasvelek.hangman;
  * Class HangmanDrawing contains stages of hangman drawings
  * 
  * @author Lukas Velek
- * @version 1.0 (6/23/2022)
+ * @version 1.1 (6/23/2022)
  *
  */
 public class HangmanDrawing {
@@ -38,7 +38,7 @@ public class HangmanDrawing {
 		hangman[3] = "";
 		hangman[4] = "";
 		hangman[5] = "";
-		hangman[6] = "";
+		hangman[6] = "------";
 		
 		return hangman;
 	}
@@ -48,24 +48,6 @@ public class HangmanDrawing {
 	 * @return Second stage of the hangman
 	 */
 	public String[] secondStage() {
-		String[] hangman = new String[7];
-		
-		hangman[0] = "";
-		hangman[1] = "";
-		hangman[2] = "";
-		hangman[3] = "";
-		hangman[4] = "";
-		hangman[5] = "";
-		hangman[6] = "------";
-		
-		return hangman;
-	}
-	
-	/**
-	 * Third stage of the hangman
-	 * @return Third stage of the hangman
-	 */
-	public String[] thirdStage() {
 		String[] hangman = new String[7];
 		
 		hangman[0] = "";
@@ -80,10 +62,10 @@ public class HangmanDrawing {
 	}
 	
 	/**
-	 * Fourth stage of the hangman
-	 * @return Fourth stage of the hangman
+	 * Third stage of the hangman
+	 * @return Third stage of the hangman
 	 */
-	public String[] fourthStage() {
+	public String[] thirdStage() {
 		String[] hangman = new String[7];
 		
 		hangman[0] = "";
@@ -98,10 +80,10 @@ public class HangmanDrawing {
 	}
 	
 	/**
-	 * Fifth stage of the hangman
-	 * @return Fifth stage of the hangman
+	 * Fourth stage of the hangman
+	 * @return Fourth stage of the hangman
 	 */
-	public String[] fifthStage() {
+	public String[] fourthStage() {
 		String[] hangman = new String[7];
 		
 		hangman[0] = "------";

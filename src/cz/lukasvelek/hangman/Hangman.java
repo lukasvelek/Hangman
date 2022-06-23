@@ -37,8 +37,6 @@ public class Hangman {
 	 * @param args Does nothing
 	 */
 	public static void main(String[] args) {
-		hangmanProgress = 0;
-		
 		sc = new Scanner(System.in);
 		
 		System.out.println("Enter word: ");
@@ -64,6 +62,8 @@ public class Hangman {
 	private static boolean playGame(boolean newGame) {
 		boolean win = false;
 		
+		hangmanProgress = 0;
+		
 		if(newGame) {
 			System.out.println("Enter word: ");
 			
@@ -73,11 +73,15 @@ public class Hangman {
 		for(;;) {
 			printProgress(game.getWordCompletion());
 			
-			if(!game.checkLetter(getLetter(sc))) {
-				if(hangmanProgress == 5) {
-					break;
-				} else {
-					hangmanProgress++;					
+			char letter = getLetter(sc);
+			
+			if(!game.checkLetterUsedAgain(letter)) {
+				if(!game.checkLetter(letter)) {
+					if(hangmanProgress == 4) {
+						break;
+					} else {
+						hangmanProgress++;					
+					}
 				}
 			}
 			
@@ -128,9 +132,6 @@ public class Hangman {
 			break;
 		case 4:
 			hangman = hd.fourthStage();
-			break;
-		case 5:
-			hangman = hd.fifthStage();
 			break;
 		default:
 			hangman = hd.firstStage();
