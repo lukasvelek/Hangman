@@ -6,7 +6,7 @@ import java.util.Scanner;
  * The class Hangman contains all console rendering functions as well as the gameplay order
  * 
  * @author Lukas Velek
- * @version 1.0 (6/23/2022)
+ * @version 1.1 (6/23/2022)
  * 
 */
 public class Hangman {
@@ -20,6 +20,11 @@ public class Hangman {
 	 * Instance of Game class that is used to play the game
 	 */
 	private static Game game;
+	
+	/**
+	 * Instance of HangmanDrawing class that contains the hangman drawings
+	 */
+	private static HangmanDrawing hd;
 	
 	/**
 	 * Hangman progress
@@ -38,6 +43,8 @@ public class Hangman {
 		
 		System.out.println("Enter word: ");
 		game = new Game(getWord(sc));
+		
+		hd = new HangmanDrawing();
 		
 		playGame(false);
 	}
@@ -67,7 +74,7 @@ public class Hangman {
 			printProgress(game.getWordCompletion());
 			
 			if(!game.checkLetter(getLetter(sc))) {
-				if(hangmanProgress == 3) {
+				if(hangmanProgress == 5) {
 					break;
 				} else {
 					hangmanProgress++;					
@@ -110,24 +117,28 @@ public class Hangman {
 	private static void drawHangman() {
 		System.out.println();
 		
-		String hangman = "";
+		String[] hangman = new String[7];
 		
 		switch(hangmanProgress) {
-		case 1:
-			hangman = "_____";
-			break;
 		case 2:
-			hangman = "  |\r\n"
-					+ "_____";
+			hangman = hd.secondStage();
 			break;
 		case 3:
-			hangman = "  |\r\n"
-					+ "  |\r\n"
-					+ "_____";
+			hangman = hd.thirdStage();
+			break;
+		case 4:
+			hangman = hd.fourthStage();
+			break;
+		case 5:
+			hangman = hd.fifthStage();
 			break;
 		default:
-			hangman = "";
+			hangman = hd.firstStage();
 			break;
+		}
+		
+		for(int i = 0; i < 7; i++) {
+			System.out.println(hangman[i]);
 		}
 	}
 	
